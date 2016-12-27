@@ -13,4 +13,13 @@ Initialize the start files submodule with:
 git submodule update --init --recursive
 ```
 
-To submit a solution, add the folder for the week's challenge, and submit a PR against master. 
+### To submit a solution
+
+1.  Create a branch
+1.  Copy the "index-start" file (or all files that we need to touch) to a <your_name>.html 
+1.  Make edits to that file and submit when ready
+
+This way we can:
+
+-  Still see the changes someone did to the initially supplied file
+-  Merge all PRs in and keep a history of the solutions
