@@ -16,7 +16,7 @@ git submodule update --init --recursive
 ### To submit a solution
 
 1.  Create a branch
-1.  Copy the "index-start" file (or all files that we need to touch) to a <your_name>.html 
+1.  Copy the "index-start" file (or all files that we need to touch) to a `<your_name>.html`, ala `avi.html` 
 1.  Make edits to that file and submit when ready
 
 This way we can:
