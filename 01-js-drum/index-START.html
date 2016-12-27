@@ -58,7 +58,64 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  
+  var keyMap = {};
+  var audioMap = {};
+
+  var keyFromElement = function(element) {
+    return parseInt(element.attributes["data-key"].value, 10);
+  };
+
+  var mapOnKeyData = function(selector) {
+    var map = {};
+
+    document.querySelectorAll(selector).forEach(function(el) {
+      map[keyFromElement(el)] = el;
+    });
+
+    return map;
+  };
+
+  var loadKeyMap = function() {
+    var keyMap = mapOnKeyData(".keys .key[data-key]");
+
+    for (let keyCode in keyMap) {
+      if (keyMap.hasOwnProperty(keyCode)) {
+        keyMap[keyCode].addEventListener("transitionend", function(e) {
+          if (e.propertyName === "transform") {
+            e.target.classList.remove("playing");
+          }
+        });
+      }
+    }
+
+    return keyMap;
+  };
+
+  var loadAudioMap = function() {
+    return mapOnKeyData("audio[data-key]");
+  };
+
+  var playSound = function(keyCode) {
+    var audio = audioMap[keyCode];
+    var key = keyMap[keyCode];
+    if ((typeof audio === "undefined") || (typeof key === "undefined")) {
+      return;
+    }
+
+    key.classList.add("playing");
+
+    audio.currentTime = 0;
+    audio.play();
+  };
+
+  document.addEventListener("DOMContentLoaded", function() {
+    keyMap = loadKeyMap();
+    audioMap = loadAudioMap();
+  });
+
+  window.addEventListener("keydown", function(e) {
+    playSound(e.keyCode);
+  });
 </script>
 
 
