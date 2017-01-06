@@ -58,7 +58,31 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  
+  document.addEventListener('keydown', function(e){
+    
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+
+    if (!audio){ return };
+
+    // manually move play start in audio sample - very cool
+    audio.currentTime = 0;
+    audio.play(); 
+       
+    const div = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    div.classList.add('playing');
+  })
+
+  const keys = document.querySelectorAll('div.key');
+
+  // This is great - I did not know we can listen for css transitions ends
+  // in js - very handy. 
+  keys.forEach(key => key.addEventListener('transitionend', transitionEnded))
+
+  function transitionEnded(e){
+    if ( ! e.propertyName == 'transform') return;
+    e.target.classList.remove('playing')
+  }
+
 </script>
 
 
