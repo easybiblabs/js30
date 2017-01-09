@@ -72,17 +72,17 @@
 <script>
 const hands = [
   {
-    time: 'Seconds',
+    units: 'Seconds',
     divide: 60,
     view: document.querySelector('.second-hand')
   },
   {
-    time: 'Minutes',
+    units: 'Minutes',
     divide: 60,
     view: document.querySelector('.min-hand')
   },
   {
-    time: 'Hours',
+    units: 'Hours',
     divide: 12,
     view: document.querySelector('.hour-hand')
   }
@@ -92,7 +92,7 @@ function setDate(){
   const now = new Date();
   // console.log(now)
   hands.forEach((hand) => {
-    const units = now[`get${ hand.time }`]();
+    const units = now[`get${ hand.units }`]();
     const degrees = ((units / hand.divide) * 360) + 90;
     hand.view.style.transform = `rotate(${degrees}deg)`;
   })
